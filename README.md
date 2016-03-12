@@ -61,7 +61,7 @@ walkthrough in a later section.
 	Database with 			Configuration files - 
 	times measured with 		project, timings, busIds	
 	an STM32 Microcontroller		
-		|				|	
+		|								|	
 		---------------------------------
 			       |
 			ECUSimulation Core
