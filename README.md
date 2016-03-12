@@ -52,7 +52,7 @@ As indicated below, the simulator consists of a database, configuration files an
 To achieve realisitic results for the timing behaviour of security protocols, this simulator offers the
 possibility to read out latencies from encryption, decryption, signing and verification from a database
 depending on the size of the message that is to be processed and the type of algorithm that is used. This
-includes e.g. RSA or AES encryption with various keys (512 to 2048 bit for RSA ands 128 to 256 bit for AES).
+includes e.g. RSA or AES encryption with various keys (512 to 2048 bit for RSA and 128 to 256 bit for AES).
 The database was measured on a STM32 microcontroller and is stored in \ECUSimulation\config\data\measurements.db.
 Furthermore to configure ECUs, gateways and buses either the API can be used or the project.ini and timings.ini and 
 can_ids.ini file can be used which are located in IVNS\ECUSimulation\config\data. This will be demonstrated in the 
