@@ -78,15 +78,7 @@ PyDev on it. By then running the python file main_lwa_preset.py in TestSimulatio
 
 ## 3. Walkthroughs
 
-For tutorials and how to use the simulator checkout the wiki at: 
-
-## 3.1. Create environment with existing ECUs
-
-To use existing ECUs and components of the simulator please take a look at the main_lwa_preset.py file as it explaines the
-existing functionality.
-This allows to send messages using the LASAN Protocol as introduced by Philipp Mundhenk et. al using defined settings.
-
-## 3.2. Create ECU with own protocol: Part I - Setting up an initial project
+For tutorials and how to use the simulator checkout the wiki at: https://github.com/arturmrowca/IVNS/wiki
 
 
 
