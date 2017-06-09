@@ -127,9 +127,9 @@ class CANFDSegMessage(AbstractSegmentBusMessage):
     def msg_length_in_bit(self):  # as seen from Bus System, so data field is max. 8 Bytes (but transports 64)
         ''' CAUTION THIS IS NOT THE NUMBER OF SEND BITS
             BUT THE LENGTH OF THE MESSAGE IF IT WAS A CAN FRAME
-            
+
             SO USE A SIMPLE CAN TO TRANSPORT IT
-    
+
             this is the length that is used by the CAN Bus
             to determine the size of the packet
             

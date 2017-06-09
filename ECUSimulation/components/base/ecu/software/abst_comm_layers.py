@@ -186,7 +186,6 @@ class AbstractPhysicalLayer(AutomotiveComponent):
     
     def wake_if_channel_free(self):
         ''' stuck until bus is free again 
-        
             Input:     -
             Output:     -
         '''

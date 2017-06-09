@@ -1,8 +1,7 @@
 MODULES_MANAGER_V2
-main_battery_management|C:\Users\Artur\Desktop\simulation\IVNS\TestSimulation\main_battery_management.py
-main_lwa|C:\Users\Artur\Desktop\simulation\IVNS\TestSimulation\main_lwa.py
-main_lwa_preset|C:\Users\Artur\Desktop\simulation\IVNS\TestSimulation\main_lwa_preset.py
-main_tesla|C:\Users\Artur\Desktop\simulation\IVNS\TestSimulation\main_tesla.py
-main_tesla_preset|C:\Users\Artur\Desktop\simulation\IVNS\TestSimulation\main_tesla_preset.py
-main_tls|C:\Users\Artur\Desktop\simulation\IVNS\TestSimulation\main_tls.py
-main_tls_preset|C:\Users\Artur\Desktop\simulation\IVNS\TestSimulation\main_tls_preset.py
+main_lwa|C:\workspaces\IVNS\IVNS\TestSimulation\main_lwa.py
+main_lwa_preset|C:\workspaces\IVNS\IVNS\TestSimulation\main_lwa_preset.py
+main_tesla|C:\workspaces\IVNS\IVNS\TestSimulation\main_tesla.py
+main_tesla_preset|C:\workspaces\IVNS\IVNS\TestSimulation\main_tesla_preset.py
+main_tls|C:\workspaces\IVNS\IVNS\TestSimulation\main_tls.py
+main_tls_preset|C:\workspaces\IVNS\IVNS\TestSimulation\main_tls_preset.py

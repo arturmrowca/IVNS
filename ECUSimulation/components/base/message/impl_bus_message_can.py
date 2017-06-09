@@ -92,7 +92,7 @@ class CANSegMessage(AbstractSegmentBusMessage):
     
     def msg_length_in_bit(self):
         ''' this is the length that is used by the CAN Bus
-            to determine the size of the packet
+            to determine the size of the packet - Segmentation included
             
             Input:   -
             Output:  size     integer    Size of this message segment in Bit        

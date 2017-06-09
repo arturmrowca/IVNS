@@ -71,7 +71,7 @@ LWASpecPresets().session_key_info = [SymAuthMechEnum.AES, AuKeyLengthEnum.bit_12
 # set further layer specifications
 GeneralSpecPreset().enable()
 GeneralSpecPreset().physical_layer = StdPhysicalLayer
-GeneralSpecPreset().datalink_layer = StdDatalinkLayer  # datalink layer that is used in all ECUs that implement this option
+GeneralSpecPreset().datalink_layer = StdDatalinkLayer  # Data link layer that is used in all ECUs that implement this option
 GeneralSpecPreset().transport_layer = FakeSegmentTransportLayer
 
 TimingDBMap().enable_fallback_message = True
@@ -108,7 +108,7 @@ LWASpecPresets().apply_spec(ecu_spec, 'ecu')
 
 # for a RegularECUSpec define sending actions of the ECU
 ecu_spec.add_sending_actions(10, 0.25, can_registration.CAN_TEST_MSG, "TEST STRING A", 50)
-ecu_spec.add_sending_actions(10, 0.5, 16, "TEST STRING B", 50)  # sends at 300, 308, 316, ...
+ecu_spec.add_sending_actions(10, 0.5, 16, "TEST STRING B", 50)  # sends at 10, 10.5, 11, ...
 
 # set the ECU already authenticated
 ecu_spec.set_authenticated(True)

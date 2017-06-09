@@ -58,7 +58,7 @@ class StdCANBus(AbstractCANBus):
         self.monitor_list.clear_on_access()  # on the next access the list will be cleared        
         return self.monitor_list.get()
 
-    
+
     def put_message(self, message):
         ''' if more than one message is to be sent within a period (assumed at the same time), the one 
             with lower message_id wins and the other one must be informed to retry

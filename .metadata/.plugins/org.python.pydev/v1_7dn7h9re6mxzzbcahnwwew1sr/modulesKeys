@@ -11005,6 +11005,8 @@ urllib.robotparser|C:\Anaconda3\Lib\urllib\robotparser.py
 uu|C:\Anaconda3\Lib\uu.py
 uuid|C:\Anaconda3\Lib\uuid.py
 validate|C:\Anaconda3\Lib\site-packages\validate.py
+vboxapi.VirtualBox_constants|C:\Anaconda3\Lib\site-packages\vboxapi\VirtualBox_constants.py
+vboxapi.__init__|C:\Anaconda3\Lib\site-packages\vboxapi\__init__.py
 venv.__init__|C:\Anaconda3\Lib\venv\__init__.py
 venv.__main__|C:\Anaconda3\Lib\venv\__main__.py
 warnings|C:\Anaconda3\Lib\warnings.py
