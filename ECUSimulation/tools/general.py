@@ -16,6 +16,8 @@ class General(Singleton):
     often used methods are collected here
     '''
     def __init__(self):
+        self.eventline_handler = None
+        
         self.used_timeouts = {}
         self.noted_sizes = {}
         self.noted_ts = {}
@@ -30,7 +32,9 @@ class General(Singleton):
         self.csv_writer = False
         self._tags_to_write = False
         
-    
+    def register_eventline_tags(self, tags):
+        self.eventline_handler.register_tags(tags)
+            
         
     def init_csv_writer(self, filepath, tags_to_write):
         

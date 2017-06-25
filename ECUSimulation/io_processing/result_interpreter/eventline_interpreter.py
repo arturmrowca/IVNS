@@ -364,8 +364,13 @@ class CheckpointInterpreterCore(object):
 
     def export_csv_on_fly(self, time, comp_id, asc_comp_id, category, mon_tag, msg_id, message, msg_size, stream_id, uq_id):
         # Export all to the given file 
+        try:
+            if mon_tag.isdigit():
+                mon_tag = eval(mon_tag)
+        except:
+            mon_tag = eval(mon_tag)
        
-        el = [str(time), str(comp_id), str(self.cp_string(eval(mon_tag), asc_comp_id, stream_id, message)), mon_tag, str(message), str(msg_size), str(stream_id), str(category), str(msg_id)]
+        el = [str(time), str(comp_id), str(self.cp_string(mon_tag, asc_comp_id, stream_id, message)), mon_tag, str(message), str(msg_size), str(stream_id), str(category), str(msg_id)]
         self.csv_writer.writerow(el)
 
     def _category_by_tag(self, tag):

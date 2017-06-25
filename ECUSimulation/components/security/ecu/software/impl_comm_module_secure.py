@@ -76,7 +76,7 @@ class SecureCommModule(AbstractCommModule):
             while True:
                 
                 # receive message
-                [message_id, message_data] = yield self.sim_env.process(self.transp_lay.receive_msg())      
+                [message_id, message_data] = yield self.sim_env.process(self.transp_lay.receive_msg())
                 
                 # received ecu authentication message
                 if self._is_auth_msg(message_id): yield self.sim_env.process(self.authenticator.process(message_id, message_data))  

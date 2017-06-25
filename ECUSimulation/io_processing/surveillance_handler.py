@@ -106,7 +106,102 @@ class ConstellationHandler(AbstractInputHandler):
 class EventlineHandler(AbstractInputHandler):
     def __init__(self):   
         AbstractInputHandler.__init__(self)
-
+        self._tags_list =[MonitorTags.CP_SEC_INIT_AUTHENTICATION, \
+            MonitorTags.CP_SEC_RECEIVE_REG_MESSAGE, \
+            MonitorTags.CP_SEC_DECRYPTED_INNER_REG_MESSAGE, \
+            MonitorTags.CP_SEC_DECRYPTED_OUTER_REG_MESSAGE, \
+            MonitorTags.CP_SEC_VALIDATED_ECU_CERTIFICATE, \
+            MonitorTags.CP_SEC_CREATED_CMP_HASH_REG_MSG, \
+            MonitorTags.CP_SEC_COMPARED_HASH_REG_MSG, \
+            MonitorTags.CP_SEC_RECEIVE_REQ_MESSAGE, \
+            MonitorTags.CP_SEC_DECRYPTED_REQ_MESSAGE, \
+            MonitorTags.CP_SEC_ECNRYPTED_CONFIRMATION_MESSAGE, \
+            MonitorTags.CP_SEC_GENERATED_SESSION_KEY, \
+            MonitorTags.CP_SEC_ENCRYPTED_DENY_MESSAGE, \
+            MonitorTags.CP_SEC_ENCRYPTED_GRANT_MESSAGE, \
+            MonitorTags.CP_ECU_RECEIVE_SIMPLE_MESSAGE, \
+            MonitorTags.CP_ECU_DECRYPTED_SIMPLE_MESSAGE, \
+            MonitorTags.CP_ECU_INTENT_SEND_SIMPLE_MESSAGE, \
+            MonitorTags.CP_ECU_ENCRYPTED_SEND_SIMPLE_MESSAGE, \
+            MonitorTags.CP_ECU_RECEIVE_SEC_MOD_ADVERTISEMENT, \
+            MonitorTags.CP_ECU_VALIDATED_SEC_MOD_CERTIFICATE, \
+            MonitorTags.CP_ECU_START_CREATION_REG_MESSAGE, \
+            MonitorTags.CP_ECU_CREATED_ECU_KEY_REG_MESSAGE, \
+            MonitorTags.CP_ECU_ENCRYPTED_INNER_REG_MESSAGE, \
+            MonitorTags.CP_ECU_HASHED_INNER_REG_MESSAGE, \
+            MonitorTags.CP_ECU_ENCRYPTED_OUTER_REG_MESSAGE, \
+            MonitorTags.CP_ECU_SEND_REG_MESSAGE, \
+            MonitorTags.CP_ECU_RECEIVE_CONF_MESSAGE, \
+            MonitorTags.CP_ECU_DECRYPTED_CONF_MESSAGE, \
+            MonitorTags.CP_ECU_START_CREATE_REQ_MESSAGE, \
+            MonitorTags.CP_ECU_ENCRYPTED_REQ_MESSAGE, \
+            MonitorTags.CP_ECU_RECEIVE_DENY_MESSAGE, \
+            MonitorTags.CP_ECU_DECRYPTED_DENY_MESSAGE, \
+            MonitorTags.CP_ECU_RECEIVE_GRANT_MESSAGE, \
+            MonitorTags.CP_ECU_DECRYPTED_GRANT_MESSAGE, \
+            MonitorTags.CP_SESSION_AVAILABLE_SEND_MESSAGE, \
+            MonitorTags.CP_SEND_CLIENT_HELLO, \
+            MonitorTags.CP_RECEIVE_CLIENT_HELLO, \
+            MonitorTags.CP_SEND_ALERT_NO_CIPHERSUITE, \
+            MonitorTags.CP_SEND_SERVER_HELLO, \
+            MonitorTags.CP_SEND_SERVER_CERTIFICATE, \
+            MonitorTags.CP_SEND_SERVER_KEYEXCHANGE,
+            MonitorTags.CP_SEND_CERTIFICATE_REQUEST , \
+            MonitorTags.CP_SEND_SERVER_HELLO_DONE , \
+            MonitorTags.CP_RECEIVE_SERVER_HELLO , \
+            MonitorTags.CP_RECEIVE_SERVER_CERTIFICATE , \
+            MonitorTags.CP_RECEIVE_SERVER_KEYEXCHANGE , \
+            MonitorTags.CP_RECEIVE_CERTIFICATE_REQUEST , \
+            MonitorTags.CP_RECEIVE_SERVER_HELLO_DONE , \
+            MonitorTags.CP_SERVER_HELLO_DONE_VALIDATED_CERT , \
+            MonitorTags.CP_SEND_CLIENT_CERTIFICATE , \
+            MonitorTags.CP_INIT_SEND_CLIENT_KEYEXCHANGE , \
+            MonitorTags.CP_ENCRYPTED_CLIENT_KEYEXCHANGE , \
+            MonitorTags.CP_GENERATED_MASTERSEC_CLIENT_KEYEXCHANGE , \
+            MonitorTags.CP_INIT_SEND_CERTIFICATE_VERIFY , \
+            MonitorTags.CP_ENCRYPTED_CERTIFICATE_VERIFY , \
+            MonitorTags.CP_SEND_CIPHER_SPEC , \
+            MonitorTags.CP_INIT_CLIENT_FINISHED , \
+            MonitorTags.CP_HASHED_CLIENT_FINISHED , \
+            MonitorTags.CP_GENERATED_HASH_FROM_PRF_CLIENT_FINISHED , \
+            MonitorTags.CP_RECEIVE_CLIENT_CERTIFICATE , \
+            MonitorTags.CP_CLIENT_CERTIFICATE_VALIDATED , \
+            MonitorTags.CP_RECEIVE_CLIENT_KEYEXCHANGE , \
+            MonitorTags.CP_DECRYPTED_CLIENT_KEYEXCHANGE , \
+            MonitorTags.CP_RECEIVE_CERTIFICATE_VERIFY , \
+            MonitorTags.CP_DECRYPTED_CERTIFICATE_VERIFY , \
+            MonitorTags.CP_GENERATED_MASTER_SECRET_CERT_VERIFY , \
+            MonitorTags.CP_RECEIVED_CHANGE_CIPHER_SPEC , \
+            MonitorTags.CP_RECEIVE_CLIENT_FINISHED , \
+            MonitorTags.CP_CLIENT_FINISHED_HASHED_COMPARISON_HASH , \
+            MonitorTags.CP_CLIENT_FINISHED_GENERATED_HASH_PRF , \
+            MonitorTags.CP_RECEIVE_SERVER_FINISHED , \
+            MonitorTags.CP_SERVER_FINISHED_HASHED_COMPARISON_HASH , \
+            MonitorTags.CP_SERVER_FINISHED_GENERATED_HASH_PRF , \
+            MonitorTags.CP_INIT_SERVER_FINISHED , \
+            MonitorTags.CP_HASHED_SERVER_FINISHED , \
+            MonitorTags.CP_GENERATED_HASH_FROM_PRF_SERVER_FINISHED , \
+            MonitorTags.CP_SERVER_AUTHENTICATED , \
+            MonitorTags.CP_CLIENT_AUTHENTICATED, \
+            MonitorTags.CP_RECEIVE_SIMPLE_MESSAGE, \
+            MonitorTags.CP_INIT_EXCHANGE_FIRST_KEY_KN, \
+            MonitorTags.CP_ENCRYPTED_EXCHANGE_FIRST_KEY_KN, \
+            MonitorTags.CP_SETUP_INIT_CREATE_KEYS, \
+            MonitorTags.CP_SETUP_FINISHED_CREATE_KEYS, \
+            MonitorTags.CP_INIT_TRANSMIT_MESSAGE, \
+            MonitorTags.CP_MACED_TRANSMIT_MESSAGE, \
+            MonitorTags.CP_RECEIVED_SIMPLE_MESSAGE, \
+            MonitorTags.CP_BUFFERED_SIMPLE_MESSAGE, \
+            MonitorTags.CP_RETURNED_AUTHENTICATED_SIMPLE_MESSAGE, \
+            MonitorTags.CP_RECEIVED_EXCHANGE_FIRST_KEY_KN, \
+            MonitorTags.CP_DECRYPTED_EXCHANGE_FIRST_KEY_KN, \
+            MonitorTags.CP_CHECKED_KEY_LEGID, \
+            MonitorTags.CP_INIT_CHECK_KEY_LEGID, \
+            MonitorTags.CP_INIT_VERIFYING_BUFFER_MESSAGE, \
+            MonitorTags.CP_FINISHED_VERIFYING_BUFFER_MESSAGE, \
+            MonitorTags.CP_SEND_SYNC_MESSAGE, \
+            MonitorTags.CP_SEND_SYNC_RESPONSE_MESSAGE, \
+            MonitorTags.CP_RECEIVE_SYNC_RESPONSE_MESSAGE]
 
     def publish(self, values, monitor_inputs):
         ''' pushes the ecu ids or the     
@@ -128,7 +223,21 @@ class EventlineHandler(AbstractInputHandler):
             self.next.publish(values, monitor_inputs)
 
     def _get_tags(self):
-        return  [MonitorTags.CP_SEC_INIT_AUTHENTICATION, \
+        return  self._tags_list
+      
+    def register_tag(self, tag):
+        self._tags_list += [tag]
+      
+    def register_tags(self, tags_list):
+        self._tags_list += tags_list
+        self._tags_list = list(set(self._tags_list))
+      
+class CheckpointHandler(AbstractInputHandler):
+    ''' reads and publishes all Checkpoint Monitor values'''
+    
+    def __init__(self):   
+        AbstractInputHandler.__init__(self)
+        self._tags_list = [MonitorTags.CP_SEC_INIT_AUTHENTICATION, \
             MonitorTags.CP_SEC_RECEIVE_REG_MESSAGE, \
             MonitorTags.CP_SEC_DECRYPTED_INNER_REG_MESSAGE, \
             MonitorTags.CP_SEC_DECRYPTED_OUTER_REG_MESSAGE, \
@@ -217,19 +326,13 @@ class EventlineHandler(AbstractInputHandler):
             MonitorTags.CP_RETURNED_AUTHENTICATED_SIMPLE_MESSAGE, \
             MonitorTags.CP_RECEIVED_EXCHANGE_FIRST_KEY_KN, \
             MonitorTags.CP_DECRYPTED_EXCHANGE_FIRST_KEY_KN, \
-            MonitorTags.CP_CHECKED_KEY_LEGID, \
             MonitorTags.CP_INIT_CHECK_KEY_LEGID, \
+            MonitorTags.CP_CHECKED_KEY_LEGID, \
             MonitorTags.CP_INIT_VERIFYING_BUFFER_MESSAGE, \
             MonitorTags.CP_FINISHED_VERIFYING_BUFFER_MESSAGE, \
             MonitorTags.CP_SEND_SYNC_MESSAGE, \
             MonitorTags.CP_SEND_SYNC_RESPONSE_MESSAGE, \
             MonitorTags.CP_RECEIVE_SYNC_RESPONSE_MESSAGE]
-      
-class CheckpointHandler(AbstractInputHandler):
-    ''' reads and publishes all Checkpoint Monitor values'''
-    
-    def __init__(self):   
-        AbstractInputHandler.__init__(self)
         
     # override
     def publish(self, cur_time, monitor_inputs):
@@ -248,102 +351,13 @@ class CheckpointHandler(AbstractInputHandler):
             self.next.publish(cur_time, monitor_inputs)
     
     def _get_tags(self):
-        return  [MonitorTags.CP_SEC_INIT_AUTHENTICATION, \
-            MonitorTags.CP_SEC_RECEIVE_REG_MESSAGE, \
-            MonitorTags.CP_SEC_DECRYPTED_INNER_REG_MESSAGE, \
-            MonitorTags.CP_SEC_DECRYPTED_OUTER_REG_MESSAGE, \
-            MonitorTags.CP_SEC_VALIDATED_ECU_CERTIFICATE, \
-            MonitorTags.CP_SEC_CREATED_CMP_HASH_REG_MSG, \
-            MonitorTags.CP_SEC_COMPARED_HASH_REG_MSG, \
-            MonitorTags.CP_SEC_RECEIVE_REQ_MESSAGE, \
-            MonitorTags.CP_SEC_DECRYPTED_REQ_MESSAGE, \
-            MonitorTags.CP_SEC_ECNRYPTED_CONFIRMATION_MESSAGE, \
-            MonitorTags.CP_SEC_GENERATED_SESSION_KEY, \
-            MonitorTags.CP_SEC_ENCRYPTED_DENY_MESSAGE, \
-            MonitorTags.CP_SEC_ENCRYPTED_GRANT_MESSAGE, \
-            MonitorTags.CP_ECU_RECEIVE_SIMPLE_MESSAGE, \
-            MonitorTags.CP_ECU_DECRYPTED_SIMPLE_MESSAGE, \
-            MonitorTags.CP_ECU_INTENT_SEND_SIMPLE_MESSAGE, \
-            MonitorTags.CP_ECU_ENCRYPTED_SEND_SIMPLE_MESSAGE, \
-            MonitorTags.CP_ECU_RECEIVE_SEC_MOD_ADVERTISEMENT, \
-            MonitorTags.CP_ECU_VALIDATED_SEC_MOD_CERTIFICATE, \
-            MonitorTags.CP_ECU_START_CREATION_REG_MESSAGE, \
-            MonitorTags.CP_ECU_CREATED_ECU_KEY_REG_MESSAGE, \
-            MonitorTags.CP_ECU_ENCRYPTED_INNER_REG_MESSAGE, \
-            MonitorTags.CP_ECU_HASHED_INNER_REG_MESSAGE, \
-            MonitorTags.CP_ECU_ENCRYPTED_OUTER_REG_MESSAGE, \
-            MonitorTags.CP_ECU_SEND_REG_MESSAGE, \
-            MonitorTags.CP_ECU_RECEIVE_CONF_MESSAGE, \
-            MonitorTags.CP_ECU_DECRYPTED_CONF_MESSAGE, \
-            MonitorTags.CP_ECU_START_CREATE_REQ_MESSAGE, \
-            MonitorTags.CP_ECU_ENCRYPTED_REQ_MESSAGE, \
-            MonitorTags.CP_ECU_RECEIVE_DENY_MESSAGE, \
-            MonitorTags.CP_ECU_DECRYPTED_DENY_MESSAGE, \
-            MonitorTags.CP_ECU_RECEIVE_GRANT_MESSAGE, \
-            MonitorTags.CP_ECU_DECRYPTED_GRANT_MESSAGE, \
-            MonitorTags.CP_SESSION_AVAILABLE_SEND_MESSAGE, \
-            MonitorTags.CP_SEND_CLIENT_HELLO, \
-            MonitorTags.CP_RECEIVE_CLIENT_HELLO, \
-            MonitorTags.CP_SEND_ALERT_NO_CIPHERSUITE, \
-            MonitorTags.CP_SEND_SERVER_HELLO, \
-            MonitorTags.CP_SEND_SERVER_CERTIFICATE, \
-            MonitorTags.CP_SEND_SERVER_KEYEXCHANGE,
-            MonitorTags.CP_SEND_CERTIFICATE_REQUEST , \
-            MonitorTags.CP_SEND_SERVER_HELLO_DONE , \
-            MonitorTags.CP_RECEIVE_SERVER_HELLO , \
-            MonitorTags.CP_RECEIVE_SERVER_CERTIFICATE , \
-            MonitorTags.CP_RECEIVE_SERVER_KEYEXCHANGE , \
-            MonitorTags.CP_RECEIVE_CERTIFICATE_REQUEST , \
-            MonitorTags.CP_RECEIVE_SERVER_HELLO_DONE , \
-            MonitorTags.CP_SERVER_HELLO_DONE_VALIDATED_CERT , \
-            MonitorTags.CP_SEND_CLIENT_CERTIFICATE , \
-            MonitorTags.CP_INIT_SEND_CLIENT_KEYEXCHANGE , \
-            MonitorTags.CP_ENCRYPTED_CLIENT_KEYEXCHANGE , \
-            MonitorTags.CP_GENERATED_MASTERSEC_CLIENT_KEYEXCHANGE , \
-            MonitorTags.CP_INIT_SEND_CERTIFICATE_VERIFY , \
-            MonitorTags.CP_ENCRYPTED_CERTIFICATE_VERIFY , \
-            MonitorTags.CP_SEND_CIPHER_SPEC , \
-            MonitorTags.CP_INIT_CLIENT_FINISHED , \
-            MonitorTags.CP_HASHED_CLIENT_FINISHED , \
-            MonitorTags.CP_GENERATED_HASH_FROM_PRF_CLIENT_FINISHED , \
-            MonitorTags.CP_RECEIVE_CLIENT_CERTIFICATE , \
-            MonitorTags.CP_CLIENT_CERTIFICATE_VALIDATED , \
-            MonitorTags.CP_RECEIVE_CLIENT_KEYEXCHANGE , \
-            MonitorTags.CP_DECRYPTED_CLIENT_KEYEXCHANGE , \
-            MonitorTags.CP_RECEIVE_CERTIFICATE_VERIFY , \
-            MonitorTags.CP_DECRYPTED_CERTIFICATE_VERIFY , \
-            MonitorTags.CP_GENERATED_MASTER_SECRET_CERT_VERIFY , \
-            MonitorTags.CP_RECEIVED_CHANGE_CIPHER_SPEC , \
-            MonitorTags.CP_RECEIVE_CLIENT_FINISHED , \
-            MonitorTags.CP_CLIENT_FINISHED_HASHED_COMPARISON_HASH , \
-            MonitorTags.CP_CLIENT_FINISHED_GENERATED_HASH_PRF , \
-            MonitorTags.CP_RECEIVE_SERVER_FINISHED , \
-            MonitorTags.CP_SERVER_FINISHED_HASHED_COMPARISON_HASH , \
-            MonitorTags.CP_SERVER_FINISHED_GENERATED_HASH_PRF , \
-            MonitorTags.CP_INIT_SERVER_FINISHED , \
-            MonitorTags.CP_HASHED_SERVER_FINISHED , \
-            MonitorTags.CP_GENERATED_HASH_FROM_PRF_SERVER_FINISHED , \
-            MonitorTags.CP_SERVER_AUTHENTICATED , \
-            MonitorTags.CP_CLIENT_AUTHENTICATED, \
-            MonitorTags.CP_RECEIVE_SIMPLE_MESSAGE, \
-            MonitorTags.CP_INIT_EXCHANGE_FIRST_KEY_KN, \
-            MonitorTags.CP_ENCRYPTED_EXCHANGE_FIRST_KEY_KN, \
-            MonitorTags.CP_SETUP_INIT_CREATE_KEYS, \
-            MonitorTags.CP_SETUP_FINISHED_CREATE_KEYS, \
-            MonitorTags.CP_INIT_TRANSMIT_MESSAGE, \
-            MonitorTags.CP_MACED_TRANSMIT_MESSAGE, \
-            MonitorTags.CP_RECEIVED_SIMPLE_MESSAGE, \
-            MonitorTags.CP_BUFFERED_SIMPLE_MESSAGE, \
-            MonitorTags.CP_RETURNED_AUTHENTICATED_SIMPLE_MESSAGE, \
-            MonitorTags.CP_RECEIVED_EXCHANGE_FIRST_KEY_KN, \
-            MonitorTags.CP_DECRYPTED_EXCHANGE_FIRST_KEY_KN, \
-            MonitorTags.CP_INIT_CHECK_KEY_LEGID, \
-            MonitorTags.CP_CHECKED_KEY_LEGID, \
-            MonitorTags.CP_INIT_VERIFYING_BUFFER_MESSAGE, \
-            MonitorTags.CP_FINISHED_VERIFYING_BUFFER_MESSAGE, \
-            MonitorTags.CP_SEND_SYNC_MESSAGE, \
-            MonitorTags.CP_SEND_SYNC_RESPONSE_MESSAGE, \
-            MonitorTags.CP_RECEIVE_SYNC_RESPONSE_MESSAGE]
+        return  self._tags_list
+      
+    def register_tag(self, tag):
+        self._tags_list += [tag]
+      
+    def register_tags(self, tags_list):
+        self._tags_list += tags_list
       
 class InputHandlerChain(object):
         

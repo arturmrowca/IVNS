@@ -8,7 +8,7 @@ from io_processing.surveillance_handler import InputHandlerChain, \
     EventlineHandler, ConstellationHandler, MonitorInput, MonitorTags
 from api.core.api_core import APICore
 import logging
-from tools.general import RefList
+from tools.general import RefList, General
 # from PyQt4.Qt import QObject
 
 class Monitor(QObject):    
@@ -44,10 +44,10 @@ class Monitor(QObject):
             self._input_handler = input_handler_chain.handler()
         else: 
             self._input_handler = InputHandlerChain()
-            self._input_handler.add_handler(CheckpointHandler())
+            cp = CheckpointHandler();self._input_handler.add_handler(cp)
             self._input_handler.add_handler(CanBusHandler())
             self._input_handler.add_handler(BufferHandler())
-            self._input_handler.add_handler(EventlineHandler())  
+            el = EventlineHandler();self._input_handler.add_handler(el); General().eventline_handler = el
             self._input_handler.add_handler(ConstellationHandler())  
             self._input_handler = self._input_handler.handler()
            
@@ -61,6 +61,13 @@ class Monitor(QObject):
                     bus_connections   list        list of lists [[bus_id, ecu_id], [bus_id, ecu_id],...]
             Output: -
         '''        
+        # set eventline handlers
+        for ecu in ecu_groups: 
+            try:
+                General().register_eventline_tags(ecu[0][0].ecuSW.comm_mod._tags)
+            except:
+                pass
+        
         # push the constellation
         push_list = [MonitorInput([ecu_groups, busses, bus_connections], MonitorTags.CONSELLATION_INFORMATION, \
                             None, 0, None, None, None, None, None, None)]
