@@ -683,17 +683,22 @@ class HashedMessage(object):
         try:
             return (self.msg_unhashed.__dict__ == second_hash.msg_unhashed.__dict__) and (self.hash_mechanism == second_hash.hash_mechanism)
         except:
-            if not (self.hash_mechanism == second_hash.hash_mechanism):
-                return False
-            
-            for i in range(len(self.msg_unhashed)):               
-                if self.msg_unhashed[i] == second_hash.msg_unhashed[i]:
-                    continue
+            try:
+                if not (self.hash_mechanism == second_hash.hash_mechanism):
+                    return False
                 
-                if not self.msg_unhashed[i].__dict__ == second_hash.msg_unhashed[i].__dict__:
-                    return False 
-      
-      
+                for i in range(len(self.msg_unhashed)):               
+                    if self.msg_unhashed[i] == second_hash.msg_unhashed[i]:
+                        continue
+                    
+                    if not self.msg_unhashed[i].__dict__ == second_hash.msg_unhashed[i].__dict__:
+                        return False 
+            except:
+                if not (self.hash_mechanism == second_hash.hash_mechanism):
+                    return False
+                if not (self.msg_unhashed == second_hash.msg_unhashed):
+                    return False
+                    
             return True
     
     

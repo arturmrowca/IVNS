@@ -1,53 +1,23 @@
 -- VERSION_4
 -- START DISKCACHE_2
 C:\workspaces\IVNS\IVNS\.metadata\.plugins\org.eclipse.core.resources\.projects\Tutorial4_AddTiming\com.python.pydev.analysis\v2_indexcache
-layers.impl_comm_module_my_protocol|1498390869964090000|C:\workspaces\IVNS\IVNS\Tutorial4_AddTiming\layers\impl_comm_module_my_protocol.py
 main_test|1497026369397988000|C:\workspaces\IVNS\IVNS\Tutorial4_AddTiming\main_test.py
-ecus.impl_ecu_myprotocol|1497014664453000000|C:\workspaces\IVNS\IVNS\Tutorial4_AddTiming\ecus\impl_ecu_myprotocol.py
 -- END DISKCACHE
 -- START DICTIONARY
-10
-6=MyProtocolCommModule.ecu_id
-3=layers.impl_comm_module_my_protocol
-10=MyProtocolECU.set_settings
-7=MyProtocolCommModule.__init__
-5=MyProtocolECU
+1
 1=main_test
-8=MyProtocolCommModule._init_layers
-2=ecus.impl_ecu_myprotocol
-4=MyProtocolCommModule
-9=MyProtocolECU.__init__
 -- END DICTIONARY
 -- START TREE 1
-9
+8
 api|1|api_log_path!11@
 bus|2|bus_spec!11@bus_group!11@
 ecu|4|ecu_group_4!11@ecu_group_1!11@ecu_group_3!11@ecu_spec!11@
 gat|2|gateway_group_2!11@gateway_group_1!11@
 mon|1|monitor!11@
-myp|2|MyProtocolECU!17@MyProtocolCommModule!25@
 res|1|result_reader!11@
 sav|3|save_path_cp!11@save_path_buf!11@save_path_can!11@
 sim|1|sim_env!11@
 -- END TREE
 -- START TREE 2
-18
-__i|2|__init__!4&26@__init__!5&18@
-_ec|2|_ecu_id!6&27@_ecu_id!7&27@
-_in|1|_init_layers!4&26@
-_ji|1|_jitter_in!7&27@
-add|2|add_sending!5&18@add_stream!5&18@
-ava|0|
-c_t|0|
-dat|1|datalink_lay!8&27@
-ecu|2|ecu_id!4&26@ecuSW!9&19@
-fun|0|
-get|1|get_type_id!5&18@
-lib|0|
-mon|3|monitor_update!4&26@monitor_update!5&18@monitor_list!7&27@
-phy|1|physical_lay!8&27@
-rec|1|receive_msg!4&26@
-sen|1|send_msg!4&26@
-set|3|settings!10&19@set_max_message_number!5&18@set_settings!5&18@
-tra|1|transp_lay!8&27@
+0
 -- END TREE

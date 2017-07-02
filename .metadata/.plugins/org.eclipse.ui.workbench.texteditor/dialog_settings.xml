@@ -2,9 +2,9 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
-		<item value="167" key="DIALOG_Y_ORIGIN"/>
+		<item value="384" key="DIALOG_Y_ORIGIN"/>
 		<item value="381" key="DIALOG_HEIGHT"/>
-		<item value="1099" key="DIALOG_X_ORIGIN"/>
+		<item value="1287" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Fake" key="selection"/>
+		<item value="certificate" key="selection"/>
 		<list key="findhistory">
-			<item value="Fake"/>
-			<item value="register_ecu"/>
-			<item value="monitor_update"/>
-			<item value="_handle_stream_authorized"/>
-			<item value="_jitter_in"/>
-			<item value="monitor_list"/>
-			<item value="_setup_receiver_streams"/>
-			<item value=".sender_streams "/>
+			<item value="certificate"/>
+			<item value="HashMe"/>
+			<item value="hash"/>
+			<item value="verify_hash"/>
+			<item value="Hashed"/>
+			<item value="self.sym_key"/>
+			<item value="sym_get_key"/>
+			<item value="_init_sec_vals"/>
 		</list>
 		<list key="replacehistory">
 		</list>
