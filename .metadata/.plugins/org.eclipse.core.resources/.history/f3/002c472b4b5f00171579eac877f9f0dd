@@ -1,0 +1,174 @@
+from components.base.ecu.software.abst_comm_layers import AbstractCommModule
+from tools.general import RefList, General as G
+from io_processing.surveillance_handler import MonitorInput, MonitorTags
+from components.base.ecu.software.impl_physical_layers import StdPhysicalLayer
+from components.base.ecu.software.impl_datalink_layers import StdDatalinkLayer
+from components.base.ecu.software.impl_transport_layers import FakeSegmentTransportLayer,\
+    SegmentTransportLayer
+from tools.general import General as G
+import uuid
+from io_processing.surveillance_handler import MonitorInput, MonitorTags
+from components.security.encryption import encryption_tools
+from components.security.encryption.public_key_manager import PublicKeyManager
+from enums.sec_cfg_enum import AsymAuthMechEnum, AuKeyLengthEnum, SymAuthMechEnum, HashMechEnum
+from components.base.message.abst_bus_message import SegData
+
+class MyProtocolCommModule(AbstractCommModule):
+    
+    def __init__(self, sim_env, ecu_id):
+        ''' Constructor
+            
+            Input:  ecu_id         string                   id of the corresponding AbstractECU
+                    sim_env        simpy.Environment        environment of this component
+            Output:  -
+        '''
+        AbstractCommModule.__init__(self, sim_env)
+
+        # local parameters
+        self._ecu_id = ecu_id
+        self._jitter_in = 1
+        self.monitor_list = RefList()
+        
+        # initialize
+        self._init_layers(self.sim_env, self.MessageClass)
+        
+        # add tags
+        self._tags = ["AUTH_SEND_TIME_BEFORE_ENCRYPTION", "AUTH_SEND_TIME_AFTER_ENCRYPTION", "AUTH_RECEIVE_TIME_BEFORE_DECRYPTION", "AUTH_RECEIVE_TIME_AFTER_DECRYPTION"]        
+    
+        # NEW: Add key pair - public and private
+        assymetric_encryption_algorithm = AsymAuthMechEnum.RSA
+        assymetric_encryption_key_length = AuKeyLengthEnum.bit_512
+        assymetric_encryption_option = 65537
+        self.priv_key, self.pub_key = encryption_tools.asy_get_key_pair(assymetric_encryption_algorithm, assymetric_encryption_key_length, assymetric_encryption_option)
+        PublicKeyManager().add_key(self._ecu_id, self.pub_key) # make public key available to everybody
+        
+        self.first_message = False
+        
+    def receive_msg(self):
+        
+        while True:
+                        
+            # receive from lower layer
+            [message_id, message_data] = yield self.sim_env.process(self.transp_lay.receive_msg())        
+        
+            # receiver information    
+            print("\n\nRECEIVER\nTime: "+str(self.sim_env.now)+"--Communication Layer: \nI am ECU " + self._ecu_id + "\nReceived message:\n - ID: " + str(message_id))
+            
+            # Assume it takes 0.5 seconds to e.g. decrypt this message
+            uid = uuid.uuid4()
+            # BEFORE PROCESSING
+            print("\nECU "+ str(self._ecu_id) +"Time before message received: "+ str(self.sim_env.now))
+            G().mon(self.monitor_list, MonitorInput([], "AUTH_RECEIVE_TIME_BEFORE_DECRYPTION", self._ecu_id, self.sim_env.now, 123, message_id, message_data.get(), message_data.padded_size, 432, uid))           
+            
+            ''' Perform asymmetric decryption of the incoming message using its public key, e.g. lasting 0.5 seconds'''
+            # get the public key of the sender
+            senders_public_key = PublicKeyManager().get_key(message_data.sender_id)
+            # use this key for decryption - also checks if this key is still valid
+            received_cipher_message = message_data.get()
+            clear_message = encryption_tools.asy_decrypt(received_cipher_message, senders_public_key, self.sim_env.now)            
+            [received_timestamp, received_message] = clear_message
+            yield self.sim_env.timeout(0.5)
+            
+            ''' Perform symmetric decryption, e.g. takes 0.02 seconds'''
+            [sym_key, received_symmetrically_encrypted_message] = received_message
+            encryption_tools.sym_decrypt(received_symmetrically_encrypted_message, asymmetric_key)
+            yield self.sim_env.timeout(0.02)
+            
+            # AFTER PROCESSING
+            print("\nECU "+ str(self._ecu_id) +"Time after message received: "+ str(self.sim_env.now))            
+            G().mon(self.monitor_list, MonitorInput([], "AUTH_RECEIVE_TIME_AFTER_DECRYPTION", self._ecu_id, self.sim_env.now, 123, message_id, message_data.get(), message_data.padded_size, 432, uid))
+            
+        # push to higher layer
+        return [message_id, received_message]
+
+    def send_msg(self, sender_id, message_id, message):
+        # Sender information
+
+        print("\n\nSENDER - \nTime: "+str(self.sim_env.now)+"--Communication Layer: \nI am ECU " + sender_id + "\nSending message:\n - ID: " + str(message_id)+"\n - Content: " + message.get())
+                
+        # Message to be send 
+        print("\nSize of the message we want to send: "+ str(message.padded_size))
+        print("\nContent of the message: "+ str(message.get()))
+        
+        # Assume it takes 0.2 seconds to e.g. encrypt this message
+        uid = uuid.uuid4()
+        # BEFORE PROCESSING
+        print("\nECU "+ str(self._ecu_id) +"Time before message sent: "+ str(self.sim_env.now))
+        G().mon(self.monitor_list, MonitorInput([], "AUTH_SEND_TIME_BEFORE_ENCRYPTION", self._ecu_id, self.sim_env.now, 123, message_id, message.get(), message.padded_size, 432, uid))
+        
+        ''' Perform symmetric encryption (and key generation): send the message encrypted with a created key
+        which e.g. takes 0.01 second'''
+        algorithm = SymAuthMechEnum.AES
+        key_length = AuKeyLengthEnum.bit_128
+        algorithm_mode = SymAuthMechEnum.CBC
+        sym_key = encryption_tools.sym_get_key(algorithm, key_length, algorithm_mode)
+        # encrypt the message with the symmetric key we just created
+        clear_message = message.get()
+        cipher = encryption_tools.sym_encrypt(clear_message, sym_key)
+        sym_cipher_message = [sym_key, cipher]
+        yield self.sim_env.timeout(0.01)
+        
+        
+        ''' Perform asymmetric encryption: Encrypt my private key which takes e.g. 0.2 seconds'''
+        timestamp =  self.sim_env.now  
+        encrypted_size = 50 # byte - usualy calculated from the size of the original message and the encryption algorithm
+        clear_text_of_message = [timestamp, sym_cipher_message]
+        cipher_message = encryption_tools.asy_encrypt(clear_text_of_message, self.priv_key)
+        cipher_message.valid_till = timestamp + 5 # add optional validity (e.g. 5 seconds)
+        wrapped_cipher_message = SegData(cipher_message, encrypted_size)  
+        yield self.sim_env.timeout(0.2)
+        
+        
+        
+        # AFTER PROCESSING
+        G().mon(self.monitor_list, MonitorInput([], "AUTH_SEND_TIME_AFTER_ENCRYPTION", self._ecu_id, self.sim_env.now, 123, message_id, message.get(), message.padded_size, 432, uid))
+        print("\nECU "+ str(self._ecu_id) +"Time after message sent: "+ str(self.sim_env.now))
+
+        # Send message - here send your message with your message_id
+        yield  self.sim_env.process(self.transp_lay.send_msg(sender_id, message_id, wrapped_cipher_message))
+
+            
+    def _init_layers(self, sim_env, MessageClass):
+        ''' Initializes the software layers 
+            
+            Input:  sim_env                        simpy.Environment        environment of this component                      
+                    MessageClass                   AbstractBusMessage       class of the messages  how they are sent on the CAN Bus
+            Output: -                   
+        '''
+        
+        # create layers
+        self.physical_lay = StdPhysicalLayer(sim_env)         
+        self.datalink_lay = StdDatalinkLayer(sim_env) 
+        self.transp_lay = SegmentTransportLayer(sim_env, MessageClass)
+   
+        # interconnect layers             
+        self.datalink_lay.physical_lay = self.physical_lay        
+        self.transp_lay.datalink_lay = self.datalink_lay           
+        
+        
+    @property
+    def ecu_id(self):
+        return self._ecu_id
+               
+    @ecu_id.setter    
+    def ecu_id(self, value):
+        self._ecu_id = value          
+
+    def monitor_update(self):
+        ''' updates the monitor connected to this ecu
+            
+            Input:    -
+            Output:   monitor_list    RefList    list of MonitorInputs
+        '''
+        # register Monitoring tags to track
+        #G().register_eventline_tags(self._tags)
+        
+        items_1 = len(self.transp_lay.datalink_lay.controller.receive_buffer.items)
+        items_2 = self.transp_lay.datalink_lay.transmit_buffer_size
+        
+        G().mon(self.monitor_list, MonitorInput(items_1, MonitorTags.BT_ECU_RECEIVE_BUFFER, self._ecu_id, self.sim_env.now))
+        G().mon(self.monitor_list, MonitorInput(items_2, MonitorTags.BT_ECU_TRANSMIT_BUFFER, self._ecu_id, self.sim_env.now))
+        
+        self.monitor_list.clear_on_access()  # on the next access the list will be cleared        
+        return self.monitor_list.get()
+

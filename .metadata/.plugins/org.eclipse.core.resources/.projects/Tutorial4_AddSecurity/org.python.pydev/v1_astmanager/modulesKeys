@@ -1,0 +1,4 @@
+MODULES_MANAGER_V2
+ecus.impl_ecu_myprotocol|C:\workspaces\IVNS\IVNS\Tutorial4_AddSecurity\ecus\impl_ecu_myprotocol.py
+layers.impl_comm_module_my_protocol|C:\workspaces\IVNS\IVNS\Tutorial4_AddSecurity\layers\impl_comm_module_my_protocol.py
+main_test|C:\workspaces\IVNS\IVNS\Tutorial4_AddSecurity\main_test.py
