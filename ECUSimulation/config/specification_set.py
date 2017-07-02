@@ -28,6 +28,8 @@ class GeneralSpecPreset(Singleton):
         self.bus = StdCANBus
         
         self.disable_fallback_message = True
+    
+        self.certificate_manager = None
         
     def bus_string(self):
         return self.bus.__name__

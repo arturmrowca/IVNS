@@ -116,7 +116,7 @@ def certificate_trustworthy(certificate, root_certificate_list, now):
                 return False
             
             # expiry        
-            if not (now < next_certificate.valid_till and now > next_certificate.valid_from):
+            if not (now < next_certificate.valid_till and now >= next_certificate.valid_from):
                 return False
             
             # next layer
