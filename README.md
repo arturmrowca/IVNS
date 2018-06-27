@@ -20,6 +20,7 @@ type desired, create and test any topology, define result outputs by using exisi
 plugins, create own GUI plugins and define the timing behaviour from an extensible database.
 In order to use this simulation simpy needs to be downloaded and installed to your python version. Also the 
 Python version 2.7 was used in this implementation.
+A detailed description is given in the file thesis_simulator.pdf.
 
 
 This guide quickly introduces the main building bricks of this network simulator and how to use it 
