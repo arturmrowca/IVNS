@@ -11,6 +11,13 @@
                         the ECUSimulation should be used. Thereby only new elements will be described. 
                         For the basic usage refer to the main.py module in this project
 =================================================================================================='''
+
+import sys
+
+sys.path.append("../ECUSimulation")
+sys.path.append("../ECUInteraction")
+sys.path.append("../Testcases")
+
 import logging
 import os
 from api.core.api_core import TimingFunctionSet
@@ -18,7 +25,8 @@ import api.ecu_sim_api as api
 import gui.direct_view_window
 from api.core.component_specs import SimpleBusCouplerSpec, SimpleBusSpec, RegularECUSpec
 from io_processing.surveillance import Monitor
-from io_processing.result_reader import ResultReaderfrom components.security.communication.stream import MessageStream
+from io_processing.result_reader import ResultReader
+from components.security.communication.stream import MessageStream
 from config import can_registration
 from io_processing.result_interpreter.abst_result_interpreter import InterpreterOptions
 from io_processing.result_interpreter.checkpoint_interpreter import CheckpointInterpreter
@@ -84,7 +92,8 @@ gateway_group_2 = api.set_ecus(sim_env, 1, 'CANGateway', ecu_spec)
 bus_spec = SimpleBusSpec(['CAN_0', 'CAN_1', 'CAN_2'])
 bus_group = api.set_busses(sim_env, 1, 'StdCANBus', bus_spec)
 api.connect_bus_by_obj(sim_env, 'CAN_0', ecu_group_1 + ecu_group_3 + ecu_group_4) 
-# set timing functions
+
+# set timing functions
 t_set2 = TimingFunctionSet() 
 ecu_func_set = StdTeslaECUTimingFunctions(main_library_tag='CyaSSL') 
 for ecu in api.ecu_list_from_groups([[ecu_group_1 + ecu_group_3 + ecu_group_4]]):
