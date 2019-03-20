@@ -12,6 +12,13 @@
                         main.py module in this project
 =================================================================================================='''
 
+
+import sys
+
+sys.path.append("../ECUSimulation")
+sys.path.append("../ECUInteraction")
+sys.path.append("../Testcases")
+
 import logging
 import os
 from api.core.api_core import TimingFunctionSet
