@@ -11,6 +11,11 @@
                         by Phillipp Mundhenk et al. It also describes how the API of the ECUSimulation
                         should be used. Thereby the LWASpecPresets is used to setup the project
 =================================================================================================='''
+import sys
+
+sys.path.append("../ECUSimulation")
+sys.path.append("../ECUInteraction")
+sys.path.append("../Testcases")
 
 import logging
 import os
@@ -348,7 +353,8 @@ direct_view = gui.direct_view_window.DirectViewer()
 # load saved views
 # filepath = r"C:\Users\artur.mrowca\Desktop\aaa.tum"
 # direct_view.load_show(['MessageCountViewPlugin', 'EventlineViewPlugin'], filepath)
-# sys.exit()
+# sys.exit()
+
 # Create the Viewer and add it 
 # available Plugins: BufferViewPlugin, CanBusStateViewPlugin, CanBusViewPlugin, CheckpointViewPlugin, 
 #                    ConstellationViewPlugin, ECUMessagesViewPlugin, EventlineViewPlugin, MessageCountViewPlugin
