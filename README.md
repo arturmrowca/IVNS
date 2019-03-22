@@ -81,7 +81,7 @@ PyDev on it. By then running the python file main_lwa_preset.py in TestSimulatio
 
 For tutorials and how to use the simulator checkout the wiki at: https://github.com/arturmrowca/IVNS/wiki
 
-
+Further, the successful continuation of this project is of high interest. Thus, if you need any assistance with setting up or implementing your project please contact us at arturmrowca@gmail.com. 
 
 
 
