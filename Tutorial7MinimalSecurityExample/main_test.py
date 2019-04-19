@@ -17,6 +17,8 @@ from io_processing.result_interpreter.eventline_interpreter import EventlineInte
 from io_processing.result_interpreter.checkpoint_interpreter import CheckpointInterpreter
 from io_processing.result_interpreter.buffer_interpreter import BufferInterpreter
 from io_processing.surveillance_handler import InputHandlerChain, EventlineHandler  # @UnusedImport
+from enums.sec_cfg_enum import CAEnum
+from config.specification_set import GeneralSpecPreset
 
 
 #===============================================================================
@@ -33,12 +35,18 @@ api.show_logging(logging.INFO, api_log_path, True)
 # create an empty environment specification for the environment
 sim_env = api.create_environment(200)
 
+#===========================================================================
+#     Create Certificate Manager
+#===========================================================================
+GeneralSpecPreset().certificate_manager = api.create_cert_manager()
+
 #===============================================================================
 #     Creating ECUs
 #=============================================================================== 
 # create ECU with specification A
 ecu_spec = RegularECUSpec(["My_Test_ECU_1"], 20000, 20000)
-ecu_spec.add_sending_actions(2, 0.5, 16, "TEST STRING B", 50)  # sends a at time 10, 10.5, 11... message id 16, content test string b and size 50
+ecu_spec.add_sending_actions(2, 0.5, 16, "TEST STRING A", 50)  # sends a at time 10, 10.5, 11... message id 16, content test string b and size 50
+
 ecu_group_1 = api.set_ecus(sim_env, 1, 'MyProtocolECU', ecu_spec)
  
 # create 2 ECUs with specification B (here: same as A)

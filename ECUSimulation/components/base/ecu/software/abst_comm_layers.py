@@ -1,8 +1,8 @@
+from PyQt5.QtCore import QObject
 from components.base.automotive_component import AutomotiveComponent
 from config import project_registration as proj
 import uuid
-from PyQt4.Qt import QObject
-from PyQt4 import QtCore
+from PyQt5 import QtCore
 
 class AbstractCommModule(QObject):
     ''' 

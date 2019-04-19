@@ -1,6 +1,6 @@
 from enum import Enum
-from PyQt4.Qt import QObject
-from PyQt4 import QtCore
+from PyQt5.Qt import QObject
+from PyQt5 import QtCore
 from math import floor
 
 class AbstractInterpreter(QObject):

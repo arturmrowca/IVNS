@@ -13,7 +13,7 @@ from components.base.message.abst_bus_message import SegData
 import os
 import uuid
 from enums.sec_cfg_enum import AsymAuthMechEnum, CAEnum, \
-    AuKeyLengthEnum, EnumTrafor, HashMechEnum
+    AuKeyLengthEnum, EnumTrafor, HashMechEnum, SymAuthMechEnum
 import simpy
 from config import timing_registration as time
 from components.security.encryption import encryption_tools

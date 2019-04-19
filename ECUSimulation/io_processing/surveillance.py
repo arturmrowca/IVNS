@@ -2,7 +2,7 @@
 import simpy
 import sqlite3 as lite
 from tools.ecu_logging import try_ex , ECULogger
-from PyQt4.Qt import QObject
+from PyQt5.Qt import QObject
 from io_processing.surveillance_handler import InputHandlerChain, \
     CheckpointHandler, BufferHandler, CanBusHandler, \
     EventlineHandler, ConstellationHandler, MonitorInput, MonitorTags

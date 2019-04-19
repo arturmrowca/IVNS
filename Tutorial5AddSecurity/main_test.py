@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+import sys
+
+sys.path.append("../ECUSimulation")
+sys.path.append("../ECUInteraction")
+sys.path.append("../Testcases")
 import logging
 import os
 import api.ecu_sim_api as api
