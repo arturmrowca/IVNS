@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba92962c-79ca-44c9-8e1e-e281ee193959" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/base/ecu/software/abst_comm_layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/base/ecu/software/abst_comm_layers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/security/ecu/software/impl_comm_module_tls.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/security/ecu/software/impl_comm_module_tls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io_processing/result_interpreter/abst_result_interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/io_processing/result_interpreter/abst_result_interpreter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io_processing/surveillance.py" beforeDir="false" afterPath="$PROJECT_DIR$/io_processing/surveillance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/io_processing/surveillance_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/io_processing/surveillance_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tutorial3AddECU/main_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial3AddECU/main_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tutorial4AddSimpleTiming/main_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial4AddSimpleTiming/main_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tutorial5AddSecurity/main_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial5AddSecurity/main_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tutorial6AddCertificates/logs/buffer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial6AddCertificates/logs/buffer.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tutorial6AddCertificates/logs/can_bus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial6AddCertificates/logs/can_bus.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tutorial6AddCertificates/logs/checkpoints.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial6AddCertificates/logs/checkpoints.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Tutorial6AddCertificates/main_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial6AddCertificates/main_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tutorial7MinimalSecurityExample/logs/buffer.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial7MinimalSecurityExample/logs/buffer.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tutorial7MinimalSecurityExample/logs/can_bus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial7MinimalSecurityExample/logs/can_bus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Tutorial7MinimalSecurityExample/logs/checkpoints.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Tutorial7MinimalSecurityExample/logs/checkpoints.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -251,7 +242,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532124" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
